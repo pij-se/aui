@@ -4,7 +4,7 @@
  *
  * Arbitrary unsigned integer library
  * Copyright (c) 2019 Johan Palm <johan@pij.se>
- * All rights reserved.
+ * Published under the MIT license.
  */
 
 #ifndef AUI_H
