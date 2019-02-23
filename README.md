@@ -17,7 +17,10 @@ In [aui.h](https://github.com/pij-se/aui/edit/master/src/aui.h) you'll find:
 #define AUI_TYPE_BIT CHAR_BIT
 #define AUI_TYPE_MAX UCHAR_MAX
 ```
-These definitions determine the native data type used for the arrays in `struct aui` to represent arbitrary unsigned integer values, the size in bits of the native data type, and the maximum value of the native data type.
+These definitions determine the
+* native data type used for the array in `struct aui` for representing arbitrary unsigned integer values,
+* the size in bits of the native data type, and
+* the maximum value of the native data type.
 
 It is recommended to redefine `AUI_TYPE`, `AUI_TYPE_BIT` and `AUI_TYPE_MAX` to use the unsigned integer data type with a known exact size which is fastest on the target compiler and platform.
 
