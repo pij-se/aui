@@ -22,6 +22,7 @@ These definitions determine the native data type used to represent arbitrary uns
 It is recommended to redefine `AUI_TYPE`, `AUI_TYPE_BIT` and `AUI_TYPE_MAX` to use the fastest unsigned integer data type for the intended compiler and platform with a known exact size.
 
 **IMPORTANT** `AUI_TYPE` must be an unsigned integer data type.
+
 **IMPORTANT** [test.c](https://github.com/pij-se/aui/edit/master/src/test.c) assumes the definitions above.
 
 ### Testing
