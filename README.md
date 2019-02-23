@@ -1,2 +1,11 @@
 # aui
-Arbitrary unsigned integer program library in C
+A program library in C for basic arbitrary unsigned integer representation, memory management, assignment, conversion, comparison, bit manipulation, bit indexing, and mathematical operations. Developed by Johan Palm, published under the MIT license in 2019.
+
+## Limitations
+TODO
+
+## Performance
+TODO
+
+## Usage
+TODO
