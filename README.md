@@ -114,5 +114,3 @@ Assigns the value represented by string `string` using the character set `set` t
 #### Get integer: `unsigned long aui_geti(const struct aui *x)`
 * Asserts: `x` must not be a pointer to `NULL`.
 * Returns: The value of `x`. If the value of `x` is larger than `ULONG_MAX`, the value returned will equal the value of `x` modulus `ULONG_MAX`.
-
-
