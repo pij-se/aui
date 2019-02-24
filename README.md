@@ -45,14 +45,14 @@ Calculate the length of an array of data type `AUI_TYPE` to represent unsigned i
 
 Computes a de Bruijn sequence and generates lookup tables for most and least significant bit indexing. The values are stored in the `static` global variables `shift` and `debruijn`, and arrays `most` and `least`.
 
-#### Most significant bit of a native variable of data type `AUI_TYPE`: `AUI_TYPE aui_msbn(AUI_TYPE native)`
+#### Most significant bit of a native variable: `AUI_TYPE aui_msbn(AUI_TYPE native)`
 * Asserts: `native` must be larger than 0.
 * Returns: The index of the least significant bit in `native`, where the least significant bit has index 0, and the most significant bit has index `AUI_TYPE_BIT - 1`.
 * Limitations: The current implementation supports `AUI_TYPE` bit sizes up to and including 512 bits. This is for futurerproofing and can easily be increased further.
 
 Indexes the most significant bit in the variable `native`.
 
-#### Least significant bit of a native variable of data type `AUI_TYPE`: `AUI_TYPE aui_lsbn(AUI_TYPE native)`
+#### Least significant bit of a native variable: `AUI_TYPE aui_lsbn(AUI_TYPE native)`
 * Asserts: `native` must be larger than 0.
 * Returns: The index of the least significant bit in `native`, where the least significant bit has index 0, and the most significant bit has index `AUI_TYPE_BIT - 1`.
 
