@@ -1,6 +1,6 @@
 /*
  * aui.c
- * 2019-02-23
+ * 2019-02-24
  *
  * Arbitrary unsigned integer library
  * Copyright (c) 2019 Johan Palm <johan@pij.se>
@@ -23,7 +23,6 @@ static int chartoint(char character, const char *set, int base)
 	assert(set);
 	assert(base >= 2);
 	assert(base <= CHAR_MAX);
-
 	while (base--)
 		if (set[base] == character)
 			return base;
@@ -63,26 +62,26 @@ void aui_init(void)
 	return;
 }
 
-AUI_TYPE aui_msbb(AUI_TYPE binary)
+AUI_TYPE aui_msbn(AUI_TYPE native)
 {
-	assert(binary);
-	binary |= binary >> 1;
+	assert(native);
+	native |= native >> 1;
 #if (AUI_TYPE_BIT >= 4)
-	binary |= binary >> 2;
+	native |= native >> 2;
 #if (AUI_TYPE_BIT >= 8)
-	binary |= binary >> 4;
+	native |= native >> 4;
 #if (AUI_TYPE_BIT >= 16)
-	binary |= binary >> 8;
+	native |= native >> 8;
 #if (AUI_TYPE_BIT >= 32)
-	binary |= binary >> 16;
+	native |= native >> 16;
 #if (AUI_TYPE_BIT >= 64)
-	binary |= binary >> 32;
+	native |= native >> 32;
 #if (AUI_TYPE_BIT >= 128)
-	binary |= binary >> 64;
+	native |= native >> 64;
 #if (AUI_TYPE_BIT >= 256)
-	binary |= binary >> 128;
+	native |= native >> 128;
 #if (AUI_TYPE_BIT >= 512)
-	binary |= binary >> 256;
+	native |= native >> 256;
 	/* ... */
 #endif
 #endif
@@ -92,13 +91,13 @@ AUI_TYPE aui_msbb(AUI_TYPE binary)
 #endif
 #endif
 #endif
-	return most[(AUI_TYPE)(binary * debruijn) >> shift];
+	return most[(AUI_TYPE)(native * debruijn) >> shift];
 }
 
-AUI_TYPE aui_lsbb(AUI_TYPE binary)
+AUI_TYPE aui_lsbn(AUI_TYPE native)
 {
-	assert(binary);
-	return least[(AUI_TYPE)((binary & (-binary)) * debruijn) >> shift];
+	assert(native);
+	return least[(AUI_TYPE)((native & (-native)) * debruijn) >> shift];
 }
 
 unsigned long aui_msba(const struct aui *x)
