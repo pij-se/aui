@@ -4,9 +4,11 @@ Last updated 2019-02-24.
 A program library in C for basic **a**rbitrary **u**nsigned **i**nteger representation, memory management, assignment, conversion, comparison, bit manipulation, bit indexing, and mathematical operations. Developed by Johan Palm, published under the MIT license.
 
 ## Limitations
-See the function descriptions below for:
+See the following function descriptions for the:
 * `AUI_TYPE aui_msbn(AUI_TYPE native)`
 * `unsigned long aui_msba(const struct aui *x)`
+
+In conclusion, to remain safe and avoid any issues due to limitations imposed by certain functions, the maximum length of the array in an arbitrary unsigned integer data structure should be limited to
 
 ## Reliability
 While I have strived to not rely on, as per the C standard, undefined, unspecified or implementation-defined behaviour, I do not guarantee that the library is void of such code.
@@ -39,37 +41,26 @@ Calculate the length of an array of data type `AUI_TYPE` to represent unsigned i
 
 #### `void aui_init(void)`
 - **Call once before other function calls.**
-- Asserts:
-`AUI_TYPE_BIT` must match the size in bits of `AUI_TYPE`.
-`AUI_TYPE_MAX` must match the maximum value of `AUI_TYPE`.
-`AUI_TYPE_BIT` must be a power of two.
+- Asserts: `AUI_TYPE_BIT` must match the size in bits of `AUI_TYPE`. `AUI_TYPE_MAX` must match the maximum value of `AUI_TYPE`. `AUI_TYPE_BIT` must be a power of two.
 
 Computes a de Bruijn sequence and generates lookup tables for most and least significant bit indexing. The values are stored in the `static` global variables `shift` and `debruijn`, and arrays `most` and `least`.
 
 #### `AUI_TYPE aui_msbn(AUI_TYPE native)`
-* Asserts:
-`native` must be larger than 0.
-* Returns:
-The index of the least significant bit in `native`, where the least significant bit has index 0, and the most significant bit has index `AUI_TYPE_BIT - 1`.
-* Limitations:
-The current implementation supports `AUI_TYPE` bit sizes up to and including 512 bits. This is for futurerproofing and can easily be increased further.
+* Asserts: `native` must be larger than 0.
+* Returns: The index of the least significant bit in `native`, where the least significant bit has index 0, and the most significant bit has index `AUI_TYPE_BIT - 1`.
+* Limitations: The current implementation supports `AUI_TYPE` bit sizes up to and including 512 bits. This is for futurerproofing and can easily be increased further.
 
 Indexes the most significant bit in the variable `native`.
 
 #### `AUI_TYPE aui_lsbn(AUI_TYPE native)`
-* Asserts:
-`native` must be larger than 0.
-* Returns:
-The index of the least significant bit in `native`, where the least significant bit has index 0, and the most significant bit has index `AUI_TYPE_BIT - 1`.
+* Asserts: `native` must be larger than 0.
+* Returns: The index of the least significant bit in `native`, where the least significant bit has index 0, and the most significant bit has index `AUI_TYPE_BIT - 1`.
 
 Indexes the least significant bit in the variable `native`.
 
 #### `unsigned long aui_msba(const struct aui *x)`
-* Asserts:
-`x` must not be a pointer to `NULL`.
-* Returns:
-The index of the most significant bit in the arbitrary unsigned integer data structure pointed to by `x`, where the least significant bit has index 0, and the most significant bit has index `AUI_TYPE_BIT * x->length - 1`.
+* Asserts: `x` must not be a pointer to `NULL`.
+* Returns: The index of the most significant bit in the arbitrary unsigned integer data structure pointed to by `x`, where the least significant bit has index 0, and the most significant bit has index `AUI_TYPE_BIT * x->length - 1`.
 If the arbitrary unsigned integer value pointed to by`x` is equal to 0, `ULONG_MAX` is returned.
-* Limitations:
-In the extreme case that `x->array` consists of more than `ULONG_MAX / AUI_TYPE_BIT` 
+* Limitations: Since `ULONG_MAX` is reserved to signal the value zero (no bits set), the number of 
 
