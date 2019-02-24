@@ -1,6 +1,6 @@
 /*
  * test.c
- * 2018-02-23
+ * 2018-02-24
  *
  * Aribtrary unsigned integer library
  * Copyright (c) 2019 Johan Palm <johan@pij.se>
@@ -36,22 +36,22 @@ unsigned long lsb(unsigned long binary)
 	return i;
 }
 
-void init_msbb_lsbb(void)
+void init_msbn_lsbn(void)
 {
 	AUI_TYPE i;
 	AUI_TYPE j;
 	AUI_TYPE k;
 
-	printf("init_msbb_lsbb: start\n");
+	printf("init_msbn_lsbn: start\n");
 	aui_init();
 	i = AUI_TYPE_MAX; /* test all possible values */
 	do {
-		if ((j = aui_msbb(i)) != (k = msb(i)))
-			printf("aui_msb(%u) != msb(%u): %u != %u\n", i, i, j, k);
-		if ((j = aui_lsbb(i)) != (k = lsb(i)))
-			printf("aui_lsb(%u) != lsb(%u): %u != %u\n", i, i, j, k);
+		if ((j = aui_msbn(i)) != (k = msb(i)))
+			printf("aui_msbn(%u) != msb(%u): %u != %u\n", i, i, j, k);
+		if ((j = aui_lsbn(i)) != (k = lsb(i)))
+			printf("aui_lsbn(%u) != lsb(%u): %u != %u\n", i, i, j, k);
 	} while (--i);
-	printf("init_msbb_lsbb: finish\n");
+	printf("init_msbn_lsbn: finish\n");
 	return;
 }
 
@@ -1325,10 +1325,7 @@ void sets_gets(void)
 
 int main(void)
 {
-	assert(sizeof(AUI_TYPE) == sizeof(unsigned char));
-	assert(AUI_TYPE_BIT == CHAR_BIT);
-	assert(AUI_TYPE_MAX == UCHAR_MAX);
-	init_msbb_lsbb();
+	/*init_msbb_lsbb();
 	alloc_free();
 	pull_push_wipe();
 	seti_geti();
@@ -1337,7 +1334,7 @@ int main(void)
 	msba_lsba();
 	one_two_and_ior_xor();
 	shl_shr_inc_dec();
-	add_sub_mul_div_mod();
+	add_sub_mul_div_mod();*/
 	sets_gets();
 	return 0;
 }
