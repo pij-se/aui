@@ -98,7 +98,7 @@ Pulls a previously allocated arbitrary unsigned integer data structure from `lis
 Pushes a previously allocated arbitrary unsigned integer data structure to `list`.
 
 #### Wipe: `void aui_wipe(void)`
-Wipes `list` from previously allocated arbitrary unsigned integer data structured pushed to the list.
+Wipes `list` of allocated arbitrary unsigned integer data structured previously pushed to the list.
 
 #### Set from integer: `void aui_seti(struct aui *x, unsigned long value)`
 * Asserts: `x` must not be a pointer to `NULL`.
