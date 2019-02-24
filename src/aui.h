@@ -1,6 +1,6 @@
 /*
  * aui.h
- * 2019-02-23
+ * 2019-02-24
  *
  * Arbitrary unsigned integer library
  * Copyright (c) 2019 Johan Palm <johan@pij.se>
@@ -26,11 +26,11 @@ struct aui {
 
 void aui_init(void);
 
-AUI_TYPE aui_msbb(AUI_TYPE binary);
-AUI_TYPE aui_lsbb(AUI_TYPE binary);
+AUI_TYPE aui_msbn(AUI_TYPE native);
+AUI_TYPE aui_lsbn(AUI_TYPE native);
 
 unsigned long aui_msba(const struct aui *x);
-unsigned long aui_lsba(const struct aui *y);
+unsigned long aui_lsba(const struct aui *x);
 
 struct aui *aui_alloc(unsigned int length);
 void aui_free(struct aui *x);
