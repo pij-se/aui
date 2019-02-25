@@ -1,10 +1,10 @@
 /*
  * aui.c
- * 2019-02-24
+ * 2019-02-25
  *
- * Arbitrary unsigned integer library
- * Copyright (c) 2019 Johan Palm <johan@pij.se>
- * Published under the MIT license.
+ * Arbitrary-length Unsigned Integers
+ * Copyright (c) 2018 Johan Palm <johan@pij.se>
+ * All rights reserved.
  */
 
 #include "aui.h"
@@ -108,7 +108,7 @@ unsigned long aui_msba(const struct aui *x)
 	i = x->length;
 	while (i && !x->array[--i]);
 	if (x->array[i])
-		return (AUI_TYPE_BIT * i + aui_msbb(x->array[i]));
+		return (AUI_TYPE_BIT * i + aui_msbn(x->array[i]));
 	return ULONG_MAX;
 }
 
@@ -121,7 +121,7 @@ unsigned long aui_lsba(const struct aui *x)
 	while ((i < x->length) && !x->array[i])
 		i++;
 	if ((i < x->length) && x->array[i])
-		return (AUI_TYPE_BIT * i + aui_lsbb(x->array[i]));
+		return (AUI_TYPE_BIT * i + aui_lsbn(x->array[i]));
 	return ULONG_MAX;
 }
 
@@ -589,7 +589,7 @@ void aui_inc(struct aui *x)
 	while ((i < x->length) && (x->array[i] == AUI_TYPE_MAX))
 		i++;
 	if (i < x->length) {
-		index = aui_lsbb(~x->array[i]);
+		index = aui_lsbn(~x->array[i]);
 		x->array[i] = ((x->array[i] >> index) | 1) << index;
 	}
 	while (i--)
@@ -607,7 +607,7 @@ void aui_dec(struct aui *x)
 	while ((i < x->length) && (x->array[i] == 0))
 		i++;
 	if (i < x->length) {
-		index = aui_lsbb(x->array[i]);
+		index = aui_lsbn(x->array[i]);
 		x->array[i] ^= (AUI_TYPE_MAX >> (AUI_TYPE_BIT - 1 - index));
 	}
 	while (i--)
