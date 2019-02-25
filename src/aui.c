@@ -2,9 +2,9 @@
  * aui.c
  * 2019-02-25
  *
- * Arbitrary-length Unsigned Integers
+ * Arbitrary unsigned integer library
  * Copyright (c) 2018 Johan Palm <johan@pij.se>
- * All rights reserved.
+ * Published under the MIT license.
  */
 
 #include "aui.h"
