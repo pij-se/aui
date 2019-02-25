@@ -1325,7 +1325,7 @@ void sets_gets(void)
 
 int main(void)
 {
-	/*init_msbb_lsbb();
+	/*init_msbn_lsbn();
 	alloc_free();
 	pull_push_wipe();
 	seti_geti();
