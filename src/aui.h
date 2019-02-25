@@ -1,9 +1,9 @@
 /*
  * aui.h
- * 2019-02-24
+ * 2019-02-25
  *
  * Arbitrary unsigned integer library
- * Copyright (c) 2019 Johan Palm <johan@pij.se>
+ * Copyright (c) 2018 Johan Palm <johan@pij.se>
  * Published under the MIT license.
  */
 
