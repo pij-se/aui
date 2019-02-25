@@ -1325,7 +1325,7 @@ void sets_gets(void)
 
 int main(void)
 {
-	/*init_msbn_lsbn();
+	init_msbn_lsbn();
 	alloc_free();
 	pull_push_wipe();
 	seti_geti();
@@ -1334,7 +1334,7 @@ int main(void)
 	msba_lsba();
 	one_two_and_ior_xor();
 	shl_shr_inc_dec();
-	add_sub_mul_div_mod();*/
+	add_sub_mul_div_mod();
 	sets_gets();
 	return 0;
 }
