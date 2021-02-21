@@ -114,3 +114,72 @@ Assigns the value represented by string `string` using the character set `set` t
 #### Get integer: `unsigned long aui_geti(const struct aui *x)`
 * Asserts: `x` must not be a pointer to `NULL`.
 * Returns: The value of `x`. If the value of `x` is larger than `ULONG_MAX`, the value returned will equal the value of `x` modulus `ULONG_MAX`.
+
+
+---
+
+
+Last updated: 2021-02-21
+# aui
+aui --- arbitrary unsigned integers --- is a program library written in ANSI C that enables representation of arbitrary-length unsigned integers accompanied by memory management, assignment, conversion, bit manipulation, bit indexing and mathematical operations.
+
+Developed by Johan Palm. Published under the MIT license.
+
+## Limitations
+See the descriptions of the following functions:
+* `AUI_TYPE aui_msbn(AUI_TYPE native) {...}`
+* `unsigned long aui_msba(const struct aui *x) {...}`
+* **TODO**
+
+In short, to avoid issues imposed by the aforementioned functions, the maximum length of the array in an arbitrary unsigned integer data structure should be limited to **TODO**.
+
+## Reliability
+As stated by the license, the software is provided without warranty of any kind. With that said, the code was written to be void of --- as per the ANSI C standard --- undefined, unspecified and implementation-defined behaviour, and should thus be fully deterministic, assuming that the code as such, the target compiler, and the target platform are void of bugs.
+
+It is strongly recommended to thoroughly test the code using the target compiler on the target platform.
+
+## Performance
+Performance tests are yet to be carried out.
+
+## Usage
+### Configuration
+For best performance it is recommended to change the definition of `AUI_TYPE`, `AUI_TYPE_BIT` and `AUI_TYPE_MAX` to use the target compiler's and target platform's fastest and/or largest unsigned integer data type.
+* `AUI_TYPE` defines the data type.
+* `AUI_TYPE_BIT` defines the number of bits in the `AUI_TYPE` type.
+* `AUI_TYPE_MAX` defines the maximum value that can be represented by the `AUI_TYPE` type.
+
+The data type defined by `AUI_TYPE` is used for the array in `struct aui` to contain the binary representation of an arbitrary unsigned integer.
+
+### Macros
+* **`AUI_SIZTOLEN(size)`**
+
+	Calculates the length of an array of data type `AUI_TYPE` necessary to hold at least `size` bytes.
+
+	Example:
+	```
+	// allocate an aui struct that can represent at least 50 bytes
+	x = aui_alloc(AUI_SIZTOLEN(50));
+	```
+
+### Functions
+* **`void aui_init(void)`**
+	* **Call once before calls to other functions.**
+	* Assertions: `AUI_TYPE_BIT` must equal the size of `AUI_TYPE` in bits. `AUI_TYPE_MAX` must equal the maximum value of `AUI_TYPE`. `AUI_TYPE_BIT` must be a power of two.
+	* Returns: None.
+
+	Computes a *de Bruijn* sequence and generates lookup tables for most and least significant bit indexing.
+
+* **`AUI_TYPE aui_msbn(AUI_TYPE native)`**
+	* **The implementation currently supports `AUI_TYPE` sizes up to 512 bits. This can be easily extended if/when needed.**
+	* Assertions: `native` must be larger than 0.
+	* Returns: The index of the most significant bit in `native`, where the least significant bit has index 0.
+
+	Indexes the most significant bit in `native`.
+
+* **`AUI_TYPE aui_lsbn(AUI_TYPE native)`**
+	**Return: The index of the least significant bit in `native`, where the least significant bit has index 0.**
+
+	Indexes the least significant bit in `native`.
+
+* **`unsigned long aui_msba(const struct aui *x)`**
+	**Return: The index of the most significant bit in**
