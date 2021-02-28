@@ -5,8 +5,8 @@ A program library in C for basic **a**rbitrary **u**nsigned **i**nteger represen
 
 ## Limitations
 See the descriptions of the following functions:
-* `AUI_TYPE aui_msbn(AUI_TYPE native)`
-* `unsigned long aui_msba(const struct aui *x)`
+- `AUI_TYPE aui_msbn(AUI_TYPE native)`
+- `unsigned long aui_msba(const struct aui *x)`
 
 In conclusion, to remain safe and avoid any issues due to limitations imposed by certain functions, the maximum length of the array in an arbitrary unsigned integer data structure should be limited to
 
