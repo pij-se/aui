@@ -39,6 +39,6 @@ All comparison operations (`aui_eq(); aui_neq(); aui_lt(); aui_lte(); aui_gt(); 
 
 All bit manipulation (`aui_one(); aui_two(); aui_and(); aui_ior(); aui_xor(); aui_shl(); aui_shr()`) and mathematical operations (`aui_inc(); aui_dec(); aui_add(); aui_sub(); aui_mul(); aui_div(); aui_mod()`) should perform identical to their native compound assignment equivalents (`x = ~x; x = ~x + 1; x = x & y; x = x | y; x = x ^ y; x = x << y; x = x >> y` and `x = x++; x = x--; x += y; x -= y; x *= y; x /= y; x %= y`)
 
-Before returning, call `aui_wipe()` to free any temporarily allocated arbitrary unsigned integer data structures.
+Before returning, call `aui_wipe()` and `aui_free()` to free any allocated arbitrary unsigned integer data structures.
 
 **Copyright (c) Johan Palm**
