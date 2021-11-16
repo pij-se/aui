@@ -1,7 +1,7 @@
 # aui
 This README is work in progress.
 
-Last updated 2021-11-16.
+Last updated 2021-11-17.
 
 aui - short for **a**rbitrary **u**nsigned **i**ntegers - is a programming library written in ANSI C for memory management, assignment, conversion, comparison, bit manipulation, bit indexing and mathematical operations of and on data structures representing arbitrary-length unsigned integers.
 
@@ -9,11 +9,7 @@ aui - short for **a**rbitrary **u**nsigned **i**ntegers - is a programming libra
 This software is published under the MIT License.
 
 ## Limitations
-See the implementation of the following two functions:
-```
-aui_msbn()
-aui_msba()
-```
+See the implementation of `aui_msbn()` and `aui_msba()`.
 
 ## Reliability
 It's my intention to keep the code void of - as per the C standard - undefined, unspecified or implementation-defined behaviour, however I do not guarantee that such is the case. While I have succressfully tested the code using [test.c](https://github.com/pij-se/aui/tree/master/src/test.c), I do not guarantee that the code will always work as intended - you are strongly encouraged to write and run your own test, using your target compiler and platform.
