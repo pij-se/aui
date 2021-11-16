@@ -28,11 +28,40 @@ Change the following definitions in [aui.h](https://github.com/pij-se/aui/tree/m
 #define AUI_TYPE_BIT CHAR_BIT /* the number of bits in AUI_TYPE */
 #define AUI_TYPE_MAX UCHAR_MAX /* the max value of AUI_TYPE */
 ```
-Call `aui_init()` (at least) once before any other functions; it sets up the global de Bruijn sequence and lookup tables for most- and least significant bit indexing, which in turn is used by many of the other functions.
+Call `aui_init()` (at least) once before any other functions; it sets up the global de Bruijn sequence and lookup tables for most- and least significant bit indexing, which in turn is used by many of the other functions:
 
-Use `aui_alloc()` to allocate arbitrary unsigned integer data structures, or `aui_pull()`  retreive arbitrary unsigned integer data structures from the global linked list (if existing, otherwise allocate), and `aui_free()` to free them,  or `aui_push()` to put them back on the global list for later use.
+```
+aui_init();
+```
 
-Assign a value using `aui_seti()` or `aui_sets()` for assignment using native unsigned integers or strings respectively. Call `aui_geti()` or `aui_gets()` to convert the value back to native unsigned integer or string. Use `aui_asgn()` and `aui_swap()` to assign and swap values between arbitrary unsigned integer data structures.
+Use `aui_alloc()` to allocate arbitrary unsigned integer data structures, or `aui_pull()` retreive arbitrary unsigned integer data structures from the global linked list (if existing, otherwise allocate):
+
+```
+struct aui *x;
+struct aui *y;
+
+x = aui_alloc(AUI_SIZTOLEN(sizeof(long)));
+
+y = aui_pull(AUI_SIZTOLEN(sizeof(short)));
+
+```
+
+Assign a value using `aui_seti()` or `aui_sets()` for assignment using native unsigned integers or strings respectively. Call `aui_geti()` or `aui_gets()` to assign the value to a native unsigned integer or string. Use `aui_asgn()` and `aui_swap()` to assign and swap values between arbitrary unsigned integer data structures:
+
+```
+unsigned long i = 1234567890;
+char str[BUFSIZ] = {'d', 'e', 'a', 'd', 'b', 'e', 'e', 'f', '\0'};
+
+aui_seti(x, i); /* assign the value of i to x */
+aui_sets(y, str, "0123456789abcdef", 16); /* assign the value of the hexadecimal representation in str to y */
+
+i = aui_geti(x); /* assign the value of x to i */
+aui_gets(str, BUFSIZ, "01", 2, y); /* assign the value of y to str in binary representation */
+
+aui_asgn(x, y); /* x = y */
+aui_swap(x, y); /* tmp = x; x = y; y = tmp; */
+
+```
 
 All comparison operations should perform identical to their native equivalents:
 
@@ -66,6 +95,12 @@ aui_div(x, y); /* x /= y */
 aui_mod(x, y); /* x %= y */
 ```
 
-Before returning, call `aui_wipe()` and `aui_free()` to free any allocated arbitrary unsigned integer data structures.
+Before returning, call `aui_push()` to put any arbitrary unsigned integer data structures on the global linked list before calling `aui_wipe()` to free the list, or `aui_free()` to free any allocated arbitrary unsigned integer data structures:
+
+```
+aui_push(y);
+aui_wipe();
+aui_free(x);
+```
 
 **Copyright (c) Johan Palm**
