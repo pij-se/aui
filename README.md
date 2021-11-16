@@ -39,7 +39,6 @@ struct aui *y;
 x = aui_alloc(AUI_SIZTOLEN(sizeof(long)));
 
 y = aui_pull(AUI_SIZTOLEN(sizeof(short)));
-
 ```
 
 Assign a value using `aui_seti()` or `aui_sets()` for assignment using native unsigned integers or strings respectively. Call `aui_geti()` or `aui_gets()` to assign the value to a native unsigned integer or string. Use `aui_asgn()` and `aui_swap()` to assign and swap values between arbitrary unsigned integer data structures:
@@ -56,7 +55,6 @@ aui_gets(str, BUFSIZ, "01", 2, y); /* assign the value of y to str in binary rep
 
 aui_asgn(x, y); /* x = y */
 aui_swap(x, y); /* tmp = x; x = y; y = tmp; */
-
 ```
 
 All comparison operations should perform identical to their native equivalents:
