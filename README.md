@@ -1,8 +1,11 @@
 # aui
 This README is work in progress.
+
 Last updated 2021-11-15.
 
-aui --- short for **a**rbitrary **u**nsigned **i**ntegers --- is a programming library written in ANSI C for memory management, assignment, conversion, comparison, bit manipulation, bit indexing and mathematical operations of and on data structures representing arbitrary-length unsigned integers.
+aui - short for **a**rbitrary **u**nsigned **i**ntegers - is a programming library written in ANSI C for memory management, assignment, conversion, comparison, bit manipulation, bit indexing and mathematical operations of and on data structures representing arbitrary-length unsigned integers.
+
+The 
 
 ## License
 This software is published under the MIT License.
@@ -15,9 +18,7 @@ aui_msba()
 ```
 
 ## Reliability
-It's my intention to keep the code void of - as per the C standard - undefined, unspecified or implementation-defined behaviour, however I do not guarantee that such is the case.
-
-Further more, while I successfully tested the library using [test.c](https://github.com/pij-se/aui/tree/master/src/test.c), I can't guarantee the reliability of the code. I strongly recommend that you write and run your own test, using your target compiler and platform.
+It's my intention to keep the code void of - as per the C standard - undefined, unspecified or implementation-defined behaviour, however I do not guarantee that such is the case. While I have succressfully tested the code using [test.c](https://github.com/pij-se/aui/tree/master/src/test.c), I do not guarantee that the code will always work as intended - you are strongly encouraged to write and run your own test, using your target compiler and platform.
 
 ## Performance
 I'm planning on running a performance test for comparison with the [GNU Multiple Precision Arithmetic Library](https://gmplib.org/). If you beat me to it, please make a pull request.
@@ -31,13 +32,41 @@ Change the following definitions in [aui.h](https://github.com/pij-se/aui/tree/m
 ```
 Call `aui_init()` (at least) once before any other functions; it sets up the global de Bruijn sequence and lookup tables for most- and least significant bit indexing, which in turn is used by many of the other functions.
 
-Use `aui_alloc()` or `aui_pull()` to allocate or retreive arbitrary unsigned integer data structures of the desired size, and `aui_free()` to free them,  or `aui_push()` to put them back on the global list for later use.
+Use `aui_alloc()` to allocate arbitrary unsigned integer data structures, or `aui_pull()`  retreive arbitrary unsigned integer data structures from the global linked list (if existing, otherwise allocate), and `aui_free()` to free them,  or `aui_push()` to put them back on the global list for later use.
 
-Assign a value using `aui_seti()` or `aui_sets()` for assignment using native unsigned integers or strings respectively. Call `aui_geti()` or `aui_gets()` to convert the value back to native unsigned integer or string.
+Assign a value using `aui_seti()` or `aui_sets()` for assignment using native unsigned integers or strings respectively. Call `aui_geti()` or `aui_gets()` to convert the value back to native unsigned integer or string. Use `aui_asgn()` and `aui_swap()` to assign and swap values between arbitrary unsigned integer data structures.
 
-All comparison operations (`aui_eq(); aui_neq(); aui_lt(); aui_lte(); aui_gt(); aui_gte()`) should perform identical to their native equivalents (`x == y; x != y; x < y; x <= y; x > y; x >= y`).
+All comparison operations should perform identical to their native equivalents:
 
-All bit manipulation (`aui_one(); aui_two(); aui_and(); aui_ior(); aui_xor(); aui_shl(); aui_shr()`) and mathematical operations (`aui_inc(); aui_dec(); aui_add(); aui_sub(); aui_mul(); aui_div(); aui_mod()`) should perform identical to their native compound assignment equivalents (`x = ~x; x = ~x + 1; x = x & y; x = x | y; x = x ^ y; x = x << y; x = x >> y` and `x = x++; x = x--; x += y; x -= y; x *= y; x /= y; x %= y`)
+```
+aui_eq(x, y); /* x == y */
+aui_neq(x, y); /* x != y */
+aui_lt(x, y); /* x < y */
+aui_lte(x, y); /* x <= y */
+aui_gt(x, y); /* x > y */
+aui_gte(x, y); /* x >= y */
+aui_eval(x); /* !!x */
+```
+
+All bit manipulation and mathematical operations should perform identical to their native compound assignment equivalents:
+
+```
+aui_one(x); /* x = ~x */
+aui_two(x); /* x = ~x + 1 */
+aui_and(x, y); /* x &= y */
+aui_ior(x, y); /* x |= y */
+aui_xor(x, y); / x ^= y* */
+aui_shl(x, i); /* x <<= i */
+aui_shr(x, i); /* x >>= i */
+
+aui_inc(x); /* x++ */
+aui_dec(x); /* x-- */
+aui_add(x, y); /* x += y */
+aui_sub(x, y); /* x -= y */
+aui_mul(x, y); /* x *= y */
+aui_div(x, y); /* x /= y */
+aui_mod(x, y); /* x %= y */
+```
 
 Before returning, call `aui_wipe()` and `aui_free()` to free any allocated arbitrary unsigned integer data structures.
 
