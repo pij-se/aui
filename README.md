@@ -1,7 +1,7 @@
 # aui
 This README is work in progress.
 
-Last updated 2021-11-15.
+Last updated 2021-11-16.
 
 aui - short for **a**rbitrary **u**nsigned **i**ntegers - is a programming library written in ANSI C for memory management, assignment, conversion, comparison, bit manipulation, bit indexing and mathematical operations of and on data structures representing arbitrary-length unsigned integers.
 
